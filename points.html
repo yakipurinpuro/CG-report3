@@ -31,7 +31,7 @@
 
       //テクスチャをロード
       loader = new THREE.TextureLoader();
-      loader.load('images/img.png',function(texture){
+      loader.load('firetex/img.png',function(texture){
         createPoints(texture);
         render();
       });
@@ -40,7 +40,7 @@
       // 星屑を作成します (カメラの動きをわかりやすくするため)
       createPoints();
 
-      function createPoints() {
+      function createPoints(texture) {
         // 頂点情報を格納する配列
         const vertices = [];
 
@@ -67,6 +67,10 @@
           size: 10,
           // 色
           color: 0xffffff,
+          //テクスチャの設定
+          vertexColors:true,
+          map:texture,
+          transparent:true,
         });
 
         // 物体を作成
