@@ -29,10 +29,18 @@
       // カメラを作成
       const camera = new THREE.PerspectiveCamera(45, width / height);
 
+      //テクスチャをロード
+      loader = new THREE.TextureLoader();
+      loader.load('images/img.png',function(texture){
+        createPoints(texture);
+        render();
+      });
+        
+//------------------------------------------------------------------------------
       // 星屑を作成します (カメラの動きをわかりやすくするため)
-      createStarField();
+      createPoints();
 
-      function createStarField() {
+      function createPoints() {
         // 頂点情報を格納する配列
         const vertices = [];
 
@@ -65,7 +73,7 @@
         const mesh = new THREE.Points(geometry, material);
         scene.add(mesh);
       }
-
+//------------------------------------------------------------------------------
       tick();
 
       // 毎フレーム時に実行されるループイベントです
